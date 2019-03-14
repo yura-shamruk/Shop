@@ -54,6 +54,7 @@ public class ShopRepository {
 
             @Override public void onResponse(@NonNull GraphResponse<Storefront.QueryRoot> response) {
                 String name = response.data().getShop().getName();
+                Log.e(TAG, "Shop name: " + name);
                 callback.onResponse(name);
             }
 
