@@ -34,6 +34,8 @@ public class ShopRepository {
         return instance;
     }
 
+    /////////////// Api methods start ->
+
     public void getCategories(@NonNull Callback<List<String>> callback){
         List<String> categories = ShopApiMock.getInstance().getCategories();
         callback.onResponse(categories);
@@ -74,25 +76,22 @@ public class ShopRepository {
 
     }
 
+    /////////////// <- Api methods end
+
     /** Needs to be called before ShopRepository usage*/
     public void init(@NonNull Context applicationContext, @NonNull String shopDomain,
                      @NonNull String apiKey) {
-//        OkHttpClient httpClient = new OkHttpClient.Builder()
-//                .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BODY))
-//                .build();
 
         graphClient = GraphClient.builder(applicationContext)
                 .shopDomain(shopDomain)
                 .accessToken(apiKey)
-                .httpCache(new File(applicationContext.getCacheDir(), "/http"), 10 * 1024 * 1024) // 10mb for http cache
-                .defaultHttpCachePolicy(HttpCachePolicy.CACHE_FIRST.expireAfter(5, TimeUnit.MINUTES)) // cached response valid by default for 5 minutes
+                .defaultHttpCachePolicy(HttpCachePolicy.CACHE_FIRST)
                 .build();
 
     }
 
     public void init(GraphClient graphClient) {
         this.graphClient = graphClient;
-
     }
 
     public interface Callback<T>{

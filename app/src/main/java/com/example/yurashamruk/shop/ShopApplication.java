@@ -28,26 +28,19 @@ public class ShopApplication extends Application {
     }
 
     private void initShop() {
-//        ShopRepository.getInstance().init(getApplicationContext(), "occultatum",
-//                "9a809b0f4950c5181e86274b0502a6c7");
+        ShopRepository.getInstance().init(getApplicationContext(), "occultatum.myshopify.com",
+                "8365677d0b83eb8a85bb2fa6422ef84f");
 
 //        OkHttpClient httpClient = new OkHttpClient.Builder()
 //                .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BODY))
 //                .build();
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.authenticator((route, response) -> {
-            String credential = Credentials.basic("9a809b0f4950c5181e86274b0502a6c7", "a4a125e628572ed4411194277be16ef3");
-            return response.request().newBuilder().header("Authorization", credential).build();
-        });
 
-        OkHttpClient httpClient = builder.build();
-
-        GraphClient graphClient = GraphClient.builder(this)
-                .shopDomain("occultatum.myshopify.com")
-                .accessToken("8365677d0b83eb8a85bb2fa6422ef84f")
-                .defaultHttpCachePolicy(HttpCachePolicy.CACHE_FIRST)
-                .build();
-        ShopRepository.getInstance().init(graphClient);
+//        GraphClient graphClient = GraphClient.builder(this)
+//                .shopDomain("occultatum.myshopify.com")
+//                .accessToken("8365677d0b83eb8a85bb2fa6422ef84f")
+//                .defaultHttpCachePolicy(HttpCachePolicy.CACHE_FIRST)
+//                .build();
+//        ShopRepository.getInstance().init(graphClient);
     }
 
 }

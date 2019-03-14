@@ -66,26 +66,6 @@ public class ShopFragment extends Fragment {
 
         shopProgress();
         viewModel.getShopName().observe(this, this::onShopNameResponse);
-
-
-
-//        Storefront.QueryRootQuery query = Storefront.query(rootQuery ->
-//                rootQuery.shop(Storefront.ShopQuery::name)
-//        );
-//
-//        QueryGraphCall call = ShopRepository.getInstance().getGraphClient().queryGraph(query);
-//
-//        call.enqueue(new GraphCall.Callback<Storefront.QueryRoot>() {
-//
-//            @Override public void onResponse(@NonNull GraphResponse<Storefront.QueryRoot> response) {
-////                String name = response.data().getShop().getName();
-////                Log.e(TAG, "Shop name: " + name);
-//            }
-//
-//            @Override public void onFailure(@NonNull GraphError error) {
-////                Log.e(TAG, "Failed to execute query", error);
-//            }
-//        });
     }
 
     private void onShopNameResponse(DataWrapper<String> shopNameDataWrapper) {
