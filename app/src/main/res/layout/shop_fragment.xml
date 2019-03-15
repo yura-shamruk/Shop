@@ -56,4 +56,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/categoriesPageViewer" />
 
+    <ImageView
+        android:id="@+id/homeButton"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:background="#cccccc"
+        android:src="@drawable/ic_home_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

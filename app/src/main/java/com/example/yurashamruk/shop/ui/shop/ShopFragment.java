@@ -35,6 +35,7 @@ import java.util.List;
 import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ShopFragment extends Fragment {
 
@@ -120,6 +121,12 @@ public class ShopFragment extends Fragment {
 
     private void shopProgress() {
         progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.homeButton)
+    public void onHomeButtonClick(){
+        TabLayout.Tab tab = tabLayout.getTabAt(0);
+        tab.select();
     }
 
 }
