@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.yurashamruk.shop.R;
 import com.example.yurashamruk.shop.adapter.CategoriesViewPagerAdapter;
 import com.example.yurashamruk.shop.api.ShopRepository;
+import com.example.yurashamruk.shop.model.ShopCollection;
 import com.example.yurashamruk.shop.util.DataWrapper;
 import com.shopify.buy3.GraphCall;
 import com.shopify.buy3.GraphError;
@@ -62,33 +63,34 @@ public class ShopFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this).get(ShopViewModel.class);
-        viewModel.getCategories().observe(this, this::updateViews);
+        viewModel.getCollections().observe(this, this::updateViews);
 
         shopProgress();
+
+
         viewModel.getShopName().observe(this, this::onShopNameResponse);
+
+
+    }
+
+    private void updateViews(DataWrapper<List<ShopCollection>> listDataWrapper) {
+        if (listDataWrapper.getError() != null) {
+            return;
+        }
+
+        List<ShopCollection> collections = listDataWrapper.getData();
+        categoriesPageViewerAdapter = new CategoriesViewPagerAdapter(getFragmentManager(), collections);
+        categoriesPageViewer.setAdapter(categoriesPageViewerAdapter);
+        tabLayout.setupWithViewPager(categoriesPageViewer);
     }
 
     private void onShopNameResponse(DataWrapper<String> shopNameDataWrapper) {
         if (shopNameDataWrapper.getError() != null) {
             Toast.makeText(getContext(), shopNameDataWrapper.getError(), Toast.LENGTH_SHORT).show();
-            hideProgress();
             return;
         }
         String shopName = shopNameDataWrapper.getData();
         Toast.makeText(getContext(), shopName, Toast.LENGTH_SHORT).show();
-        hideProgress();
-    }
-
-
-    private void updateViews(DataWrapper<List<String>> listDataWrapper) {
-        if (listDataWrapper.getError() != null) {
-            return;
-        }
-
-        List<String> categories = listDataWrapper.getData();
-        categoriesPageViewerAdapter = new CategoriesViewPagerAdapter(getFragmentManager(), categories);
-        categoriesPageViewer.setAdapter(categoriesPageViewerAdapter);
-        tabLayout.setupWithViewPager(categoriesPageViewer);
     }
 
 

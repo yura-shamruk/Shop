@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yurashamruk.shop.R;
+import com.example.yurashamruk.shop.model.ShopCollection;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ public class CategoryFragment extends Fragment {
 
     private CategoryViewModel viewModel;
 
-    public static CategoryFragment newInstance(String title) {
+    public static CategoryFragment newInstance(ShopCollection shopCollection) {
+        String title = shopCollection.getName();
         CategoryFragment categoryFragment = new CategoryFragment();
         Bundle args = new Bundle();
         args.putString(CATEGORY_ID, title);
