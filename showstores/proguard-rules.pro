@@ -19,20 +19,5 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--dontwarn retrofit2.**
--keep class retrofit2.** { *; }
--keepattributes Signature
--keepattributes Exceptions
-
-# Required for Square
--keep class com.squareup.okhttp.** { *; }
--keep interface com.squareup.okhttp.** { *; }
--keep class retrofit.** { *; }
--keepattributes Signature
--keepattributes *Annotation*
--dontwarn com.squareup.okhttp.**
--dontwarn okio.**
--dontwarn retrofit.**
-
-# Required for GSON
--keep class com.shopify.buy.model.** { *; }
+-keep class com.shopify.** { *; }
+-dontwarn com.shopify.**

@@ -3,7 +3,7 @@ package com.example.yurashamruk.shop;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.yurashamruk.shop.ui.shop.ShopFragment;
+import co.monterosa.showstores.ui.shop.ShopFragment;
 
 public class MainActivity extends AppCompatActivity {
 
